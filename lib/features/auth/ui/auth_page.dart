@@ -1,5 +1,6 @@
 import 'dart:isolate';
 
+import 'package:ecommerce_user/features/auth/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -25,6 +26,7 @@ class _AuthPageState extends State<AuthPage> {
     });
   }
 
+  AuthBloc authBloc = AuthBloc();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,13 +120,17 @@ class _AuthPageState extends State<AuthPage> {
                   height: 50,
                   child: ElevatedButton(
                       onPressed: () {
-                        // if (_formKey.currentState!.validate()) {
-                        //   _formKey.currentState!.save();
-                        //   isLogin
-                        //       ? AuthenticationFunctions.signIn(email, password)
-                        //       : AuthenticationFunctions.singUp(
-                        //           context, email, password, fName, lName);
-                        // }
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          isLogin
+                              ? authBloc.add(AuthSignInEvent(
+                                  email: email, password: password))
+                              : authBloc.add(AuthSignUpEvent(
+                                  email: email,
+                                  password: password,
+                                  fName: fName,
+                                  lastName: lName));
+                        }
                       },
                       child: Text(isLogin ? "Login" : "SignUp"))),
               TextButton(

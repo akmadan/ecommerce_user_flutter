@@ -1,5 +1,6 @@
 import 'package:ecommerce_user/features/auth/ui/auth_page.dart';
 import 'package:ecommerce_user/features/dashboard/ui/dashboard_page.dart';
+import 'package:ecommerce_user/features/products/ui/products_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class _AppPageState extends State<AppPage> {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return DashboardPage();
+          return ProductsPage();
         } else {
           return AuthPage();
         }

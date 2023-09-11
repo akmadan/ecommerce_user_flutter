@@ -1,5 +1,7 @@
 import 'package:ecommerce_user/app.dart';
 import 'package:ecommerce_user/design/app_theme.dart';
+import 'package:ecommerce_user/features/dashboard/ui/dashboard_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';

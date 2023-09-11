@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthRepo {
-  static singUp(
-      BuildContext context, String email, password, firstName, lastName) async {
+  static signUp(
+     String email, password, firstName, lastName) async {
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -25,17 +25,17 @@ class AuthRepo {
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('The password provided is too weak.')));
+        // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        //     content: Text('The password provided is too weak.')));
         print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('The account already exists for that email.')));
+        // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        //     content: Text('The account already exists for that email.')));
         print('The account already exists for that email.');
       }
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.toString())));
+      // ScaffoldMessenger.of(context)
+      //     .showSnackBar(SnackBar(content: Text(e.toString())));
       print(e);
     }
   }
