@@ -17,8 +17,13 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   FutureOr<void> productsFetchInitialEvent(
       ProductsFetchInitialEvent event, Emitter<ProductsState> emit) async {
     try {
+      emit(ProductsFetchLoadingState());
       List<ProductModel> products = await ProductsRepo.getProducts();
       log(products.map((e) => e.toMap()).toString());
-    } catch (e) {}
+      emit(ProductsFetchSuccessState(products: products));
+    } catch (e) {
+      log(e.toString());
+      emit(ProductsFetchErrorState());
+    }
   }
 }
