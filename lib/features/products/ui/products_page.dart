@@ -1,3 +1,4 @@
+import 'package:ecommerce_user/features/cart/ui/cart_page.dart';
 import 'package:ecommerce_user/features/products/bloc/products_bloc.dart';
 import 'package:ecommerce_user/features/products/repos/products_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,7 +30,13 @@ class _ProductsPageState extends State<ProductsPage> {
               onPressed: () {
                 FirebaseAuth.instance.signOut();
               },
-              icon: Icon(Icons.logout))
+              icon: Icon(Icons.logout)),
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CartPage()));
+              },
+              icon: Icon(Icons.shopping_cart_outlined))
         ],
         title: Text('Products Page'),
       ),

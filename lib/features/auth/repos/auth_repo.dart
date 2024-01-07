@@ -3,8 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthRepo {
-  static signUp(
-     String email, password, firstName, lastName) async {
+  static signUp(String email, password, firstName, lastName) async {
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -20,7 +19,8 @@ class AuthRepo {
           'uid': credential.user!.uid,
           'firstName': firstName,
           'lastName': lastName,
-          'email': email
+          'email': email,
+          'cartList': []
         });
       }
     } on FirebaseAuthException catch (e) {
